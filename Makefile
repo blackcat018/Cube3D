@@ -1,26 +1,24 @@
-# Compiler and flags
 CC      = cc
 CFLAGS  = -Wall -Wextra -Werror
 
-# Project name
 NAME    = cube3d
 
-# Directories
 MLX_DIR = MLX42
 SRC_DIR = ray_casting
 
-# Files
 SRC     = $(SRC_DIR)/casing.c
 OBJ     = $(SRC:.c=.o)
 
-# MLX42 includes and libs
-MLX_INC = -I$(MLX_DIR)/include
-MLX_LIB = -L$(MLX_DIR) -lmlx42 -lglfw -ldl -lm
+# Homebrew path (Apple Silicon = /opt/homebrew, Intel = /usr/local)
+BREW_PREFIX := $(shell brew --prefix)
 
-# Include local headers
+MLX_INC = -I$(MLX_DIR)/include
+MLX_LIB = -L$(MLX_DIR)/build -lmlx42 \
+          -L$(BREW_PREFIX)/lib -lglfw \
+          -framework Cocoa -framework IOKit -framework CoreVideo -framework Carbon
+
 INC     = -I.
 
-# Build rules
 all: $(NAME)
 
 $(NAME): $(OBJ)
