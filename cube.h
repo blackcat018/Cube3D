@@ -9,20 +9,15 @@
 #define WIN_W 800
 #define WIN_H 600
 
-#define MAP_W 8
-#define MAP_H 8
+#define MAP_W 12
+#define MAP_H 12
 #define TILE 50
 
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
-#define MAP_WIDTH 8
-#define MAP_HEIGHT 8
-
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
-#define MAP_WIDTH 8
-#define MAP_HEIGHT 8
+#define MAP_WIDTH 24
+#define MAP_HEIGHT 24
 
 #include <stdio.h>
 #include <unistd.h>
