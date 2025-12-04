@@ -297,10 +297,10 @@ void handle_movement(t_game *g)
         }
     }
     if (mlx_is_key_down(g->mlx, MLX_KEY_LEFT))
-        rotate_player(&g->player, g->player.rot_speed);
+        rotate_player(&g->player, -g->player.rot_speed);
     
     if (mlx_is_key_down(g->mlx, MLX_KEY_RIGHT))
-        rotate_player(&g->player, -g->player.rot_speed);
+        rotate_player(&g->player, g->player.rot_speed);
 }
 
 void loop_hook(void *param)
