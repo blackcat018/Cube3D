@@ -18,13 +18,56 @@
 #define SCREEN_HEIGHT 600
 #define MAP_WIDTH 24
 #define MAP_HEIGHT 24
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 50
+# endif
 
 #include <stdio.h>
 #include <unistd.h>
-#include "MLX42/MLX42.h"
+#include "MLX42/include/MLX42/MLX42.h"
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <fcntl.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include "libft/libft.h"
+
+typedef struct s_calc
+{
+    int line_height;
+    int draw_start;
+    int draw_end;
+}   t_calc;
+
+typedef struct s_scalc
+{
+    uint8_t *pixels;
+    int tex_w;
+    int tex_h;
+    int tex_x;
+    double tex_pos;
+    double step;
+}  t_scalc;
+
+typedef struct rgb
+{
+    uint8_t r;
+    uint8_t g;
+    uint8_t b;
+}   t_rgb;
+
+typedef struct s_pars
+{
+	char    **map;
+	t_rgb   *floor;
+	t_rgb  *ceil;
+	char    *no;
+    char    *so;
+    char    *ea;
+    char    *we;
+    bool    stop;
+}	t_pars;
 
 typedef struct s_player
 {
@@ -42,8 +85,18 @@ typedef struct s_game
 {
     mlx_t       *mlx;
     mlx_image_t *img;
+    mlx_texture_t* texture_east;
+    mlx_image_t* img_wall_east;
+    mlx_texture_t* texture_north;
+    mlx_image_t* img_wall_north;
+    mlx_texture_t* texture_south; 
+    mlx_image_t* img_wall_south; 
+    mlx_texture_t* texture_west;
+    mlx_image_t* img_wall_west; 
     t_player    player;
-    int         map[MAP_HEIGHT][MAP_WIDTH];
+    t_pars      *my_map;
+    int         map_width;
+    int         map_height;
 }   t_game;
 
 typedef struct s_ray
@@ -64,5 +117,28 @@ typedef struct s_ray
     int side;
 }   t_ray;
 
-
+int     check_player(char **map);
+int check_map(char **map);
+char *firs_word(char *line);
+t_rgb  *colors_parce(char *word);
+void    free_mymap(t_pars *my_map);
+int   chack_empty_line(char *line);
+bool chck_cub(char *arg);
+int	cub_atoi(const char *str);
+int	ft_count(char const *s);
+char *trim_line(char *line);
+char *last_word(char *line);
+int    fill_mapst(char *line,t_pars *my_map);
+void draw_wall(t_game *g, int x, t_ray *ray);
+void	fill_map(t_pars *my_map);
+bool check_zero_pos(char **map);
+bool    check_content(char *line);
+void draw_textured_wall(t_game *g, int x, t_ray *ray);
+bool check_line(char *line);
+char	*get_next_line(int fd);
+int		ft_found(const char *str, char c);
+char	*ft_char_front(char *s);
+char	*ft_read(char *str, char *buffer, int fd);
+char	*ft_char_back(char *s);
+void	ft_copy(char *dest, const char *src, size_t src_len);
 #endif

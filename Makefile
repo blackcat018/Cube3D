@@ -1,37 +1,36 @@
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -Wall -Wextra -Werror #-fsanitize=address
 
-NAME    = cube3d
+NAME    = Cube3d
 
-MLX_DIR = MLX42
 SRC_DIR = ray_casting
-
-SRC     = $(SRC_DIR)/casing.c
+MLX_DIR = MLX42
+SRC     = casing.c tst.c get_next_line.c fill_map.c wall_textur.c
 OBJ     = $(SRC:.c=.o)
+LIBFT_DIR = ./libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
-# Homebrew path (Apple Silicon = /opt/homebrew, Intel = /usr/local)
-BREW_PREFIX := $(shell brew --prefix)
+MLX     = -I$(MLX_DIR)/include
+#GLFW    = -L$(shell brew --prefix glfw)/lib -lglfw
+MLXFLAGS = -L$(MLX_DIR) -lmlx42 -lglfw -ldl -lm
 
-MLX_INC = -I$(MLX_DIR)/include
-MLX_LIB = -L$(MLX_DIR)/build -lmlx42 \
-          -L$(BREW_PREFIX)/lib -lglfw \
-          -framework Cocoa -framework IOKit -framework CoreVideo -framework Carbon
-
-INC     = -I.
-
-all: $(NAME)
+all: $(LIBFT) $(NAME)
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(CFLAGS) $(INC) $(MLX_INC) $(MLX_LIB) -o $(NAME)
+	$(CC) $(OBJ) $(CFLAGS) $(MLX) $(GLFW) $(MLXFLAGS) $(LIBFT) -Iinclude -o $(NAME)
 
 %.o: %.c cube.h
-	$(CC) $(CFLAGS) $(INC) $(MLX_INC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
