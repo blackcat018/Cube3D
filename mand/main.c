@@ -1,30 +1,5 @@
 #include "cube.h"
 
-int check_collision_circle(t_game *g, double x, double y, double radius)
-{
-    if (get_map_value(g, (int)x, (int)y) != 0)
-        return 1;    
-    if (get_map_value(g, (int)(x + radius), (int)y) != 0)
-        return 1;
-    if (get_map_value(g, (int)(x - radius), (int)y) != 0)
-        return 1;
-    if (get_map_value(g, (int)x, (int)(y + radius)) != 0)
-        return 1;
-    if (get_map_value(g, (int)x, (int)(y - radius)) != 0)
-        return 1;    
-    double diag = radius * 2;
-    if (get_map_value(g, (int)(x + diag), (int)(y + diag)) != 0)
-        return 1;
-    if (get_map_value(g, (int)(x + diag), (int)(y - diag)) != 0)
-        return 1;
-    if (get_map_value(g, (int)(x - diag), (int)(y + diag)) != 0)
-        return 1;
-    if (get_map_value(g, (int)(x - diag), (int)(y - diag)) != 0)
-        return 1;
-    
-    return 0;
-}
-
 //add this shit to the bonus part you idiot!
 void draw_filled_circle(t_game *g, int center_x, int center_y, int radius, uint32_t color)
 {
