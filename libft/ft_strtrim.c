@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 22:06:10 by czghoumi          #+#    #+#             */
-/*   Updated: 2025/12/02 21:25:34 by mac              ###   ########.fr       */
+/*   Updated: 2025/12/16 19:56:03 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,12 @@ static size_t	cont2(char const *s1, char const *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	// size_t	i;
 	size_t	j;
 	size_t	k;
 	char	*ptr;
 
 	if (s1 == NULL || set == NULL)
 		return (NULL);
-	// i = 0;
 	j = cont1(s1, set);
 	k = cont2(s1, set);
 	if (j > k)
