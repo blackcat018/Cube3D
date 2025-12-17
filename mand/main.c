@@ -12,7 +12,7 @@ int check_collision_circle(t_game *g, double x, double y, double radius)
         return 1;
     if (get_map_value(g, (int)x, (int)(y - radius)) != 0)
         return 1;    
-    double diag = radius * 0.707;
+    double diag = radius * 2;
     if (get_map_value(g, (int)(x + diag), (int)(y + diag)) != 0)
         return 1;
     if (get_map_value(g, (int)(x + diag), (int)(y - diag)) != 0)

@@ -27,11 +27,11 @@ HEADER_B = bonus/cube_bonus.h
 SRCS_B = bonus/parcing_bonus.c bonus/door_textur_bonus.c bonus/wall_textur_bonus.c bonus/casing_bonus.c
 OBJS_B = $(SRCS_B:.c=.o)
 
-MLX     = -I$(MLX_DIR)/include
-#GLFW    = -L$(shell brew --prefix glfw)/lib -lglfw
-MLXFLAGS = -L$(MLX_DIR) -lmlx42 -lglfw -ldl -lm
-
+MLX = MLX42/build/libmlx42.a
+GLFW = -L$(shell brew --prefix glfw)/lib -lglfw
+MLXFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 INCLUDES = -I include
+
 
 all: $(LIBFT) $(NAME)
 
