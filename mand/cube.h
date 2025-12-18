@@ -6,9 +6,6 @@
 #define KEY_S <keycode for S>
 #define KEY_D <keycode for D>
 
-#define WIN_W 800
-#define WIN_H 600
-
 #define MAP_W 12
 #define MAP_H 12
 #define TILE 50
@@ -243,11 +240,17 @@ void    free_texturs(t_game *g);
 int    fill_textur(t_pars	*my_map, t_game *g);
 int fill_tex(t_pars	*my_map, t_game *g);
 t_pars	*map_fill(int argc, char **argv);
+void	draw_minimap_pixel(t_game *g, t_minimap *m);
+void	draw_minimap(t_game *g);
 
 
 
 
 
+//temporarlly
+void	draw_filled_circle(t_game *g, int center_x, int center_y, int radius,
+		uint32_t color);
+void	draw_line(t_game *g, int x0, int y0, int x1, int y1, uint32_t color);
 
 
 

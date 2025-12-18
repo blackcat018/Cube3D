@@ -15,7 +15,8 @@ SRC = mand/main.c mand/texturing/tst.c\
 	  mand/ray_casting/casting.c\
 	  mand/ray_casting/player.c\
 	  mand/ray_casting/plane.c\
-	  mand/ray_casting/directions.c
+	  mand/ray_casting/directions.c\
+	  mand/minimap/minimap.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = ./libft
