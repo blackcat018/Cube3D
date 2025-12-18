@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:23:07 by czghoumi          #+#    #+#             */
-/*   Updated: 2025/12/17 12:29:00 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 08:11:46 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,30 +73,36 @@ t_pars	*map_fill(int argc, char **argv)
 
 int fill_tex(t_pars	*my_map, t_game *g)
 {
-    g->texture_south= mlx_load_png(my_map->so);
+    g->texture_south = mlx_load_png(my_map->so);
     if (!g->texture_south)
         return (1);
     g->img_wall_south = mlx_texture_to_image(g->mlx, g->texture_south);
-	if (!(g->img_wall_south))
-		return (1);
-    g->texture_west= mlx_load_png(my_map->we);
+    if (!(g->img_wall_south))
+        return (1);
+    g->texture_west = mlx_load_png(my_map->we);
     if (!g->texture_west)
         return (1);
     g->img_wall_west = mlx_texture_to_image(g->mlx, g->texture_west);
-	if (!(g->img_wall_west))
-		return (1);
-        g->texture_torch = mlx_load_png("./textures/torch_hand.png");
-    if (!g->texture_torch)
-    {
-        printf("Error: Could not load torch sprite\n");
+    if (!(g->img_wall_west))
         return (1);
-    }
+    g->texture_torch = mlx_load_png("./textures/torch_hand.png");
+    if (!g->texture_torch)
+        return (1);
     g->img_torch = mlx_texture_to_image(g->mlx, g->texture_torch);
     if (!g->img_torch)
-    {
-        printf("Error: Could not convert torch texture to image\n");
         return (1);
-    }
+    g->texture_attack1 = mlx_load_png("./textures/attack1.png");
+    if (!g->texture_attack1)
+        return (1);
+    g->img_attack1 = mlx_texture_to_image(g->mlx, g->texture_attack1);
+    if (!g->img_attack1)
+        return (1);
+    g->texture_attack2 = mlx_load_png("./textures/attack2.png");
+    if (!g->texture_attack2)
+        return (1);
+    g->img_attack2 = mlx_texture_to_image(g->mlx, g->texture_attack2);
+    if (!g->img_attack2)
+        return (1);
     return 0;
 }
 int    fill_textur(t_pars	*my_map, t_game *g)
@@ -127,10 +133,15 @@ void    free_texturs(t_game *g)
     mlx_delete_texture(g->texture_west);
     mlx_delete_texture(g->texture_north);
     mlx_delete_texture(g->texture_south);
+    mlx_delete_texture(g->texture_torch);
+    mlx_delete_texture(g->texture_attack1);
+    mlx_delete_texture(g->texture_attack2);
     mlx_delete_image(g->mlx, g->img_wall_east);
     mlx_delete_image(g->mlx, g->img_wall_west);
     mlx_delete_image(g->mlx, g->img_wall_north);
     mlx_delete_image(g->mlx, g->img_wall_south);
+    mlx_delete_image(g->mlx, g->img_torch);
+    mlx_delete_image(g->mlx, g->img_attack1);
+    mlx_delete_image(g->mlx, g->img_attack2);
     mlx_delete_image(g->mlx, g->img);
-    mlx_terminate(g->mlx);
 }
