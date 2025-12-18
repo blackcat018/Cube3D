@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 22:15:12 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/18 12:22:35 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:42:21 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void draw_ceiling_and_floor(t_game *G)
     uint32_t color_c;
     uint32_t color_f;
     
-    uint32_t base_ceiling = 0xFF0A0A0A;
-    uint32_t base_floor = 0xFFEBCE87;
+    uint32_t base_ceiling = 0xFFfeee68;
+    uint32_t base_floor = 0xFFfadac4;
 
     y = 0;
     while (y < G->screen_height / 2)

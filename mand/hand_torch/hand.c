@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 21:59:42 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/18 13:13:24 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:23:58 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	update_torch_animation(t_torch *t, t_game *g)
 	if (t->is_attacking)
 	{
 		t->attack_frame++;
-		if (t->attack_frame >= 15)
+		if (t->attack_frame >= 10)
 		{
 			t->is_attacking = 0;
 			t->attack_frame = 0;
