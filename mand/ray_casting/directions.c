@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 22:07:42 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/18 08:22:10 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 12:40:57 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	handle_mouse_rotation(t_game *g)
 	int32_t		delta_x;
 	double		rotation_speed;
 
-	center_x = SCREEN_WIDTH / 2;
-	center_y = SCREEN_HEIGHT / 2;
+	center_x = g->screen_width / 2;
+	center_y = g->screen_height / 2;
 	mlx_get_mouse_pos(g->mlx, &mouse_x, &mouse_y);
 	if (first_frame)
 	{
@@ -45,7 +45,7 @@ void	handle_mouse_rotation(t_game *g)
 		return ;
 	}
 	delta_x = mouse_x - center_x;
-	rotation_speed = 0.002;
+	rotation_speed = 0.0015;
 	if (delta_x != 0)
 		rotate_player(&g->player, delta_x * rotation_speed);
 	mlx_set_mouse_pos(g->mlx, center_x, center_y);

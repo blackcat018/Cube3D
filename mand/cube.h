@@ -11,8 +11,8 @@
 #define TILE 50
 
 
-#define SCREEN_WIDTH 1000
-#define SCREEN_HEIGHT 800
+// #define SCREEN_WIDTH 1000
+// #define SCREEN_HEIGHT 800
 #define MAP_WIDTH 24
 #define MAP_HEIGHT 24
 #define LIGHT 3
@@ -172,6 +172,8 @@ typedef struct s_game
     mlx_texture_t   *texture_attack2;
     mlx_image_t     *img_attack1;
     mlx_image_t     *img_attack2;
+	int             screen_width;
+    int            screen_height;
 }   t_game;
 
 typedef struct s_ray

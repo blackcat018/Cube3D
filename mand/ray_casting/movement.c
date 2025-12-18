@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 22:07:42 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/17 18:55:57 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 12:08:04 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ void handle_movement(t_game *g)
 {
     double move_speed;
     
-    handle_mouse_rotation(g);
+	if(!mlx_is_key_down(g->mlx,MLX_KEY_LEFT_CONTROL))
+    	handle_mouse_rotation(g);
     apply_sprint(g, &move_speed);
     handle_wasd(g, move_speed);
     handle_rotation(g);

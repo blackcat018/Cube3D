@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:23:07 by czghoumi          #+#    #+#             */
-/*   Updated: 2025/12/18 08:11:46 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 12:28:52 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int fill_tex(t_pars	*my_map, t_game *g)
 }
 int    fill_textur(t_pars	*my_map, t_game *g)
 {
-    g->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d", true);
+    g->mlx = mlx_init(g->screen_width, g->screen_height, "cub3d", true);
     if (!g->mlx)
         return (1);
     g->texture_east= mlx_load_png(my_map->ea);

@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 23:09:01 by czghoumi          #+#    #+#             */
-/*   Updated: 2025/12/17 12:26:23 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 12:21:39 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,21 @@ mlx_texture_t	*wall_text(t_ray *ray, t_game *g)
 	return (tex);
 }
 
-t_calc	refill(double perp)
+t_calc	refill(double perp,t_game *g)
 {
 	t_calc	ss;
 
-	ss.line_height = (int)(SCREEN_HEIGHT / perp);
-	ss.draw_start = -ss.line_height / 2 + SCREEN_HEIGHT / 2;
+	ss.line_height = (int)(g->screen_height / perp);
+	ss.draw_start = -ss.line_height / 2 + g->screen_height / 2;
 	if (ss.draw_start < 0) 
 		ss.draw_start = 0;
-	ss.draw_end = ss.line_height / 2 + SCREEN_HEIGHT / 2;
-	if (ss.draw_end >= SCREEN_HEIGHT) 
-		ss.draw_end = SCREEN_HEIGHT - 1;
+	ss.draw_end = ss.line_height / 2 + g->screen_height / 2;
+	if (ss.draw_end >= g->screen_height) 
+		ss.draw_end = g->screen_height - 1;
 	return (ss);
 }
 
-t_scalc	calculatin(double wall_x, mlx_texture_t *tex, t_calc value)
+t_scalc	calculatin(double wall_x, mlx_texture_t *tex, t_calc value,t_game *g)
 {
 	t_scalc	ss;
 
@@ -75,7 +75,7 @@ t_scalc	calculatin(double wall_x, mlx_texture_t *tex, t_calc value)
 	if (ss.tex_x >= ss.tex_w) 
 		ss.tex_x = ss.tex_w - 1;
 	ss.step = (double)ss.tex_h / (double)value.line_height;
-	ss.tex_pos = (value.draw_start - SCREEN_HEIGHT / 
+	ss.tex_pos = (value.draw_start - g->screen_height / 
 			2.0 + value.line_height / 2.0) * ss.step;
 	return (ss);
 }
@@ -131,7 +131,7 @@ void draw_textured_wall(t_game *g, int x, t_ray *ray)
     if (!g)
         return;
     
-    value = refill(ray->perp_wall_dist);
+    value = refill(ray->perp_wall_dist,g);
     wall_x = wal_xx(ray, g);
     tex = wall_text(ray, g);
     
@@ -141,7 +141,7 @@ void draw_textured_wall(t_game *g, int x, t_ray *ray)
         return;
     }
     
-    calc = calculatin(wall_x, tex, value);
+    calc = calculatin(wall_x, tex, value,g);
     double max_light_distance = LIGHT;
     light_intensity = 1.0 - (ray->perp_wall_dist / max_light_distance);
     if (light_intensity < 0.1)

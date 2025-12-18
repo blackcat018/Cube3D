@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 12:15:18 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/18 08:34:16 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:12:17 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void init_ray(t_ray *ray, t_game *g, int x)
 {
-    ray->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
+    ray->camera_x = 2 * x / (double)g->screen_width - 1;
     ray->dir_x = g->player.dir_x + g->player.plane_x * ray->camera_x;
     ray->dir_y = g->player.dir_y + g->player.plane_y * ray->camera_x;
     
@@ -86,7 +86,7 @@ void draw_vertical_line(t_game *g, int x, int draw_start, int draw_end, uint32_t
     
     while (y < draw_end)
     {
-        if (y >= 0 && y < SCREEN_HEIGHT)
+        if (y >= 0 && y < g->screen_height)
             mlx_put_pixel(g->img, x, y, color);
         y++;
     }
@@ -97,7 +97,7 @@ void cast_rays(t_game *g)
     draw_ceiling_and_floor(g);
     int x = 0;
     t_ray ray;
-    while (x < SCREEN_WIDTH)
+    while (x < g->screen_width)
     {
         init_ray(&ray, g, x);
         calculate_step(&ray, g);

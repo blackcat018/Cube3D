@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 21:59:42 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/18 09:56:01 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:13:24 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	update_torch_animation(t_torch *t, t_game *g)
 	if (t->is_attacking)
 	{
 		t->attack_frame++;
-		if (t->attack_frame >= 10)
+		if (t->attack_frame >= 15)
 		{
 			t->is_attacking = 0;
 			t->attack_frame = 0;
@@ -97,8 +97,8 @@ void	draw_torch_pixel(t_game *g, t_torch *t, uint8_t *pixels, int img_width)
 	{
 		t->screen_x = t->sprite_x + t->x;
 		t->screen_y = t->sprite_y + t->y;
-		if (t->screen_x >= 0 && t->screen_x < SCREEN_WIDTH && t->screen_y >= 0
-			&& t->screen_y < SCREEN_HEIGHT)
+		if (t->screen_x >= 0 && t->screen_x < g->screen_width && t->screen_y >= 0
+			&& t->screen_y < g->screen_height)
 		{
 			pixel = (t->r << 24) | (t->g << 16) | (t->b << 8) | t->alpha;
 			mlx_put_pixel(g->img, t->screen_x, t->screen_y, pixel);
@@ -130,11 +130,11 @@ void	draw_torch_sprite(t_game *g)
 	else
 		current_img = g->img_torch;
 	
-	dynamic_scale = (float)SCREEN_HEIGHT / (current_img->height * 2.0f);
+	dynamic_scale = (float)g->screen_height / (current_img->height * 2.0f);
 	t.sprite_width = (int)(current_img->width * dynamic_scale);
 	t.sprite_height = (int)(current_img->height * dynamic_scale);
-	t.sprite_x = (SCREEN_WIDTH - t.sprite_width) / 2;
-	t.sprite_y = (SCREEN_HEIGHT - t.sprite_height + 20) + (int)t.bob;
+	t.sprite_x = (g->screen_width - t.sprite_width) / 2;
+	t.sprite_y = (g->screen_height - t.sprite_height + 20) + (int)t.bob;
 	pixels = (uint8_t *)current_img->pixels;
 	t.y = 0;
 	while (t.y < t.sprite_height)

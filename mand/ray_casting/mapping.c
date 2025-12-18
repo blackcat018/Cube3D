@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 22:15:12 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/16 22:16:53 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 12:22:35 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void draw_ceiling_and_floor(t_game *G)
     uint32_t base_floor = 0xFFEBCE87;
 
     y = 0;
-    while (y < SCREEN_HEIGHT / 2)
+    while (y < G->screen_height / 2)
     {
-        distance = (1.5 * SCREEN_HEIGHT) / (SCREEN_HEIGHT / 2.0 - y + 0.001);
+        distance = (1.5 * G->screen_height) / (G->screen_height / 2.0 - y + 0.001);
         light_intensity = 1.0 - (distance / max_light_distance);
         if (light_intensity < 0.1) light_intensity = 0.1;
         if (light_intensity > 1.0) light_intensity = 1.0;
@@ -36,7 +36,7 @@ void draw_ceiling_and_floor(t_game *G)
         color_c = apply_lighting(base_ceiling, light_intensity * 0.7);
         
         x = 0;
-        while (x < SCREEN_WIDTH)
+        while (x < G->screen_width)
         {
             mlx_put_pixel(G->img, x, y, color_c);
             x++;
@@ -44,11 +44,11 @@ void draw_ceiling_and_floor(t_game *G)
         y++;
     }
     
-    y = SCREEN_HEIGHT / 2;
-    while (y < SCREEN_HEIGHT)
+    y = G->screen_height / 2;
+    while (y < G->screen_height)
     {
 
-        distance = (1.5 * SCREEN_HEIGHT) / (y - SCREEN_HEIGHT / 2.0 + 0.001);
+        distance = (1.5 * G->screen_height) / (y - G->screen_height / 2.0 + 0.001);
         light_intensity = 1.0 - (distance / max_light_distance);
         if (light_intensity < 0.1) light_intensity = 0.1;
         if (light_intensity > 1.0) light_intensity = 1.0;
@@ -56,7 +56,7 @@ void draw_ceiling_and_floor(t_game *G)
         color_f = apply_lighting(base_floor, light_intensity);
         
         x = 0;
-        while (x < SCREEN_WIDTH)
+        while (x < G->screen_width)
         {
             mlx_put_pixel(G->img, x, y, color_f);
             x++;
@@ -67,13 +67,13 @@ void draw_ceiling_and_floor(t_game *G)
 
 void draw_wall(t_game *g, int x, t_ray *ray)
 {
-    int line_height = (int)(SCREEN_HEIGHT / ray->perp_wall_dist);
-    int draw_start = -line_height / 2 + SCREEN_HEIGHT / 2;
+    int line_height = (int)(g->screen_height / ray->perp_wall_dist);
+    int draw_start = -line_height / 2 + g->screen_height / 2;
     if (draw_start < 0)
         draw_start = 0;
-    int draw_end = line_height / 2 + SCREEN_HEIGHT / 2;
-    if (draw_end >= SCREEN_HEIGHT)
-        draw_end = SCREEN_HEIGHT - 1;
+    int draw_end = line_height / 2 + g->screen_height / 2;
+    if (draw_end >= g->screen_height)
+        draw_end = g->screen_height - 1;
     uint32_t color;
     if (ray->side == 0)
     {
@@ -85,6 +85,6 @@ void draw_wall(t_game *g, int x, t_ray *ray)
     }
     draw_vertical_line(g, x, 0, draw_start, 0x333333FF);
     draw_vertical_line(g, x, draw_start, draw_end, color);
-    draw_vertical_line(g, x, draw_end, SCREEN_HEIGHT, 0x666666FF);
+    draw_vertical_line(g, x, draw_end, g->screen_height, 0x666666FF);
 }
 

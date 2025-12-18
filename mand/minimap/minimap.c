@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 08:54:59 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/18 09:45:05 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 12:22:18 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	draw_filled_circle(t_game *g, int center_x, int center_y, int radius,
 			{
 				m.screen_x = center_x + m.x;
 				m.screen_y = center_y + m.y;
-				if (m.screen_x >= 0 && m.screen_x < SCREEN_WIDTH
-					&& m.screen_y >= 0 && m.screen_y < SCREEN_HEIGHT)
+				if (m.screen_x >= 0 && m.screen_x < g->screen_width
+					&& m.screen_y >= 0 && m.screen_y < g->screen_height)
 					mlx_put_pixel(g->img, m.screen_x, m.screen_y, color);
 			}
 			m.x++;
@@ -48,7 +48,7 @@ void	draw_line(t_game *g, int x0, int y0, int x1, int y1, uint32_t color)
 	l.err = l.dx - l.dy;
 	while (1)
 	{
-		if (x0 >= 0 && x0 < SCREEN_WIDTH && y0 >= 0 && y0 < SCREEN_HEIGHT)
+		if (x0 >= 0 && x0 < g->screen_width && y0 >= 0 && y0 < g->screen_height)
 			mlx_put_pixel(g->img, x0, y0, color);
 		if (x0 == x1 && y0 == y1)
 			break ;
@@ -78,14 +78,14 @@ void	draw_minimap_pixel(t_game *g, t_minimap *m)
 			m->color = 0x404040AA;
 		m->screen_x = m->offset_x + m->x;
 		m->screen_y = m->offset_y + m->y;
-		if (m->screen_x < SCREEN_WIDTH && m->screen_y < SCREEN_HEIGHT)
+		if (m->screen_x < g->screen_width && m->screen_y < g->screen_height)
 			mlx_put_pixel(g->img, m->screen_x, m->screen_y, m->color);
 	}
 	else if (m->dx * m->dx + m->dy * m->dy <= (m->radius + 2) * (m->radius + 2))
 	{
 		m->screen_x = m->offset_x + m->x;
 		m->screen_y = m->offset_y + m->y;
-		if (m->screen_x < SCREEN_WIDTH && m->screen_y < SCREEN_HEIGHT)
+		if (m->screen_x < g->screen_width && m->screen_y < g->screen_height)
 			mlx_put_pixel(g->img, m->screen_x, m->screen_y, 0xffffffAA);
 	}
 }
@@ -94,7 +94,7 @@ void	draw_minimap(t_game *g)
 {
 	t_minimap	m;
 
-	m.size = SCREEN_WIDTH / 6;
+	m.size = g->screen_width / 6;
 	m.offset_x = 20;
 	m.offset_y = 20;
 	m.radius = m.size / 2;
