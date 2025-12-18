@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 21:59:42 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/18 09:39:47 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 09:56:01 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void	draw_torch_sprite(t_game *g)
 	t.sprite_width = (int)(current_img->width * dynamic_scale);
 	t.sprite_height = (int)(current_img->height * dynamic_scale);
 	t.sprite_x = (SCREEN_WIDTH - t.sprite_width) / 2;
-	t.sprite_y = (SCREEN_HEIGHT - t.sprite_height + 30) + (int)t.bob;
+	t.sprite_y = (SCREEN_HEIGHT - t.sprite_height + 20) + (int)t.bob;
 	pixels = (uint8_t *)current_img->pixels;
 	t.y = 0;
 	while (t.y < t.sprite_height)
