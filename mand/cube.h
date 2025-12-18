@@ -14,8 +14,8 @@
 #define TILE 50
 
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+#define SCREEN_WIDTH 1000
+#define SCREEN_HEIGHT 800
 #define MAP_WIDTH 24
 #define MAP_HEIGHT 24
 #define LIGHT 3
