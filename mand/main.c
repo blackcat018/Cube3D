@@ -47,7 +47,6 @@ int main(int argc, char **argv)
     mlx_image_to_window(g.mlx, g.img, 0, 0);
 	mlx_resize_hook(g.mlx,&dynamic_resizing,&g);
     mlx_set_cursor_mode(g.mlx, MLX_MOUSE_HIDDEN); 
-    atexit(lll);
     mlx_loop_hook(g.mlx, loop_hook, &g);
     mlx_loop(g.mlx);
     free_mymap(g.my_map);

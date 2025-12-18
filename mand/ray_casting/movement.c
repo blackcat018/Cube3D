@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 22:07:42 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/18 12:08:04 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 14:07:23 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void move_forward(t_game *g, double move_speed)
 {
     double new_x;
     double new_y;
-    
+
     new_x = g->player.x + g->player.dir_x * move_speed;
     new_y = g->player.y + g->player.dir_y * move_speed;
     
