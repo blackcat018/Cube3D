@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 21:59:42 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/18 08:49:07 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 08:52:18 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,11 @@ void	draw_torch_pixel(t_game *g, t_torch *t, uint8_t *pixels, int img_width)
 
 void	draw_torch_sprite(t_game *g)
 {
-	static t_torch	t = {0, 0, 0, 0, 0.67, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+	static t_torch	t = {0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0};
 	uint8_t			*pixels;
 	mlx_image_t		*current_img;
+	float			dynamic_scale;
 
 	handle_attack(g, &t);
 	update_torch_animation(&t, g);
@@ -128,8 +129,11 @@ void	draw_torch_sprite(t_game *g)
 	}
 	else
 		current_img = g->img_torch;
-	t.sprite_width = (int)(current_img->width * t.scale);
-	t.sprite_height = (int)(current_img->height * t.scale);
+	
+	dynamic_scale = (float)SCREEN_HEIGHT / (current_img->height * 2.0f);
+	
+	t.sprite_width = (int)(current_img->width * dynamic_scale);
+	t.sprite_height = (int)(current_img->height * dynamic_scale);
 	t.sprite_x = (SCREEN_WIDTH - t.sprite_width) / 2;
 	t.sprite_y = (SCREEN_HEIGHT - t.sprite_height + 30) + (int)t.bob;
 	pixels = (uint8_t *)current_img->pixels;
@@ -139,8 +143,8 @@ void	draw_torch_sprite(t_game *g)
 		t.x = 0;
 		while (t.x < t.sprite_width)
 		{
-			t.orig_x = (int)(t.x / t.scale);
-			t.orig_y = (int)(t.y / t.scale);
+			t.orig_x = (int)(t.x / dynamic_scale);
+			t.orig_y = (int)(t.y / dynamic_scale);
 			draw_torch_pixel(g, &t, pixels, current_img->width);
 			t.x++;
 		}
