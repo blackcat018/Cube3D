@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 22:07:42 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/18 14:07:23 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 15:56:05 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,16 @@ void move_forward(t_game *g, double move_speed)
 {
     double new_x;
     double new_y;
+    double off_x;
+    double off_y;
 
     new_x = g->player.x + g->player.dir_x * move_speed;
     new_y = g->player.y + g->player.dir_y * move_speed;
-    
-    if (get_map_value(g, (int)new_x, (int)g->player.y) == 0)
+    off_x = g->player.dir_x * g->player.radius;
+    off_y = g->player.dir_y * g->player.radius;
+    if (get_map_value(g, (int)(new_x + off_x), (int)(g->player.y)) == 0)
         g->player.x = new_x;
-    if (get_map_value(g, (int)g->player.x, (int)new_y) == 0)
+    if (get_map_value(g, (int)(g->player.x), (int)(new_y + off_y)) == 0)
         g->player.y = new_y;
 }
 
@@ -39,13 +42,16 @@ void move_backward(t_game *g, double move_speed)
 {
     double new_x;
     double new_y;
-    
+    double off_x;
+    double off_y;
+
     new_x = g->player.x - g->player.dir_x * move_speed;
     new_y = g->player.y - g->player.dir_y * move_speed;
-    
-    if (get_map_value(g, (int)new_x, (int)g->player.y) == 0)
+	off_x = -g->player.dir_x * g->player.radius;
+	off_y = -g->player.dir_y * g->player.radius;
+    if (get_map_value(g, (int)(new_x + off_x), (int)g->player.y) == 0)
         g->player.x = new_x;
-    if (get_map_value(g, (int)g->player.x, (int)new_y) == 0)
+    if (get_map_value(g, (int)g->player.x, (int)(new_y + off_y)) == 0)
         g->player.y = new_y;
 }
 
@@ -53,13 +59,18 @@ void move_left(t_game *g, double move_speed)
 {
     double new_x;
     double new_y;
-    
+    double off_x;
+    double off_y;
+
     new_x = g->player.x - g->player.plane_x * move_speed;
     new_y = g->player.y - g->player.plane_y * move_speed;
-    
-    if (get_map_value(g, (int)new_x, (int)g->player.y) == 0)
+
+    off_x = -g->player.plane_x * g->player.radius;
+    off_y = -g->player.plane_y * g->player.radius;
+
+    if (get_map_value(g, (int)(new_x + off_x), (int)(g->player.y)) == 0)
         g->player.x = new_x;
-    if (get_map_value(g, (int)g->player.x, (int)new_y) == 0)
+    if (get_map_value(g, (int)(g->player.x), (int)(new_y + off_y)) == 0)
         g->player.y = new_y;
 }
 
@@ -67,13 +78,18 @@ void move_right(t_game *g, double move_speed)
 {
     double new_x;
     double new_y;
-    
+    double off_x;
+    double off_y;
+
     new_x = g->player.x + g->player.plane_x * move_speed;
     new_y = g->player.y + g->player.plane_y * move_speed;
-    
-    if (get_map_value(g, (int)new_x, (int)g->player.y) == 0)
+
+    off_x = g->player.plane_x * g->player.radius;
+    off_y = g->player.plane_y * g->player.radius;
+
+    if (get_map_value(g, (int)(new_x + off_x), (int)(g->player.y)) == 0)
         g->player.x = new_x;
-    if (get_map_value(g, (int)g->player.x, (int)new_y) == 0)
+    if (get_map_value(g, (int)(g->player.x), (int)(new_y + off_y)) == 0)
         g->player.y = new_y;
 }
 

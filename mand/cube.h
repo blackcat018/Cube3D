@@ -146,6 +146,7 @@ typedef struct s_player
     double plane_y;
     double move_speed;
     double rot_speed;
+	double radius;
 }   t_player;
 
 typedef struct s_game

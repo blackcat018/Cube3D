@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 12:15:18 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/17 12:37:19 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/18 15:53:10 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void init_player(t_player *player, t_game *g)
     int j;
     
     i = 0;
+	player->radius = 0.2;
     while (i < g->map_height)
     {
         j = 0;
