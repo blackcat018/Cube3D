@@ -13,7 +13,7 @@ void loop_hook(void *param)
 
 void lll()
 {
-	system ("leaks Cube3d");
+	system("leaks Cube3d");
 }
 void dynamic_resizing(int width,int height,void *param)
 {
@@ -32,6 +32,7 @@ void dynamic_resizing(int width,int height,void *param)
 }
 int main(int argc, char **argv)
 {
+	atexit(lll);
     t_game g;
 
     g.screen_width = 800;

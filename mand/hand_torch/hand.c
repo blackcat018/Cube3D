@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 21:59:42 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/19 11:20:06 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/19 20:09:01 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	update_torch_bob(t_torch *t, t_game *g)
 void handle_door_open(t_game *g, t_torch *t)
 {
     static int last_key_state = 0;
-    int current_key_state = mlx_is_key_down(g->mlx, MLX_KEY_O);
+    int current_key_state = mlx_is_key_down(g->mlx, MLX_KEY_E);
     
     if (current_key_state && !last_key_state && !t->is_opening && !t->is_attacking)
     {
@@ -81,7 +81,7 @@ void update_torch_animation(t_torch *t, t_game *g)
     if (t->is_opening)
     {
         t->open_frame++;
-        if (t->open_frame >= 15)
+        if (t->open_frame >= 12)
         {
             t->is_opening = 0;
             t->open_frame = 0;
@@ -150,7 +150,7 @@ void draw_torch_sprite(t_game *g)
     }
     else if (t.is_opening)
     {
-        if (t.open_frame < 7)
+        if (t.open_frame < 4)
             current_img = g->img_open1;
         else
             current_img = g->img_open2;

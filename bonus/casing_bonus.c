@@ -270,7 +270,7 @@ void handle_movement(t_game *g)
     double new_y;
     const double radius = 0.2;
     static bool o_was_down = false;
-    bool o_is_down = mlx_is_key_down(g->mlx, MLX_KEY_O);
+    bool o_is_down = mlx_is_key_down(g->mlx, MLX_KEY_E);
 
     handle_mouse_rotation(g);
     if (mlx_is_key_down(g->mlx, MLX_KEY_ESCAPE))
