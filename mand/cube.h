@@ -56,6 +56,8 @@ typedef struct s_torch
     uint8_t alpha;
 	int     is_attacking;
     int     attack_frame;
+	int     is_opening;
+	int     open_frame;
 } t_torch;
 
 
@@ -175,6 +177,10 @@ typedef struct s_game
     mlx_image_t     *img_attack2;
 	int             screen_width;
     int            screen_height;
+	mlx_texture_t   *texture_open1;
+    mlx_texture_t   *texture_open2;
+    mlx_image_t     *img_open1;
+    mlx_image_t     *img_open2;
 }   t_game;
 
 typedef struct s_ray

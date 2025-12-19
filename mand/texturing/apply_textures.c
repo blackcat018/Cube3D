@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:23:07 by czghoumi          #+#    #+#             */
-/*   Updated: 2025/12/18 12:28:52 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/19 11:08:45 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,32 @@ int fill_tex(t_pars	*my_map, t_game *g)
     g->img_attack2 = mlx_texture_to_image(g->mlx, g->texture_attack2);
     if (!g->img_attack2)
         return (1);
+	    g->texture_attack1 = mlx_load_png("./textures/attack1.png");
+    if (!g->texture_attack1)
+        return (1);
+    g->img_attack1 = mlx_texture_to_image(g->mlx, g->texture_attack1);
+    if (!g->img_attack1)
+        return (1);
+    g->texture_attack2 = mlx_load_png("./textures/attack2.png");
+    if (!g->texture_attack2)
+        return (1);
+    g->img_attack2 = mlx_texture_to_image(g->mlx, g->texture_attack2);
+    if (!g->img_attack2)
+        return (1);
+    
+    g->texture_open1 = mlx_load_png("./textures/open1.png");
+    if (!g->texture_open1)
+        return (1);
+    g->img_open1 = mlx_texture_to_image(g->mlx, g->texture_open1);
+    if (!g->img_open1)
+        return (1);
+    
+    g->texture_open2 = mlx_load_png("./textures/open2.png");
+    if (!g->texture_open2)
+        return (1);
+    g->img_open2 = mlx_texture_to_image(g->mlx, g->texture_open2);
+    if (!g->img_open2)
+        return (1);
     return 0;
 }
 int    fill_textur(t_pars	*my_map, t_game *g)
@@ -127,7 +153,7 @@ int    fill_textur(t_pars	*my_map, t_game *g)
     return 0;
 }
 
-void    free_texturs(t_game *g)
+void free_texturs(t_game *g)
 {
     mlx_delete_texture(g->texture_east);
     mlx_delete_texture(g->texture_west);
@@ -136,6 +162,8 @@ void    free_texturs(t_game *g)
     mlx_delete_texture(g->texture_torch);
     mlx_delete_texture(g->texture_attack1);
     mlx_delete_texture(g->texture_attack2);
+    mlx_delete_texture(g->texture_open1);
+    mlx_delete_texture(g->texture_open2);
     mlx_delete_image(g->mlx, g->img_wall_east);
     mlx_delete_image(g->mlx, g->img_wall_west);
     mlx_delete_image(g->mlx, g->img_wall_north);
@@ -143,5 +171,8 @@ void    free_texturs(t_game *g)
     mlx_delete_image(g->mlx, g->img_torch);
     mlx_delete_image(g->mlx, g->img_attack1);
     mlx_delete_image(g->mlx, g->img_attack2);
+    mlx_delete_image(g->mlx, g->img_open1);
+    mlx_delete_image(g->mlx, g->img_open2);
     mlx_delete_image(g->mlx, g->img);
+    mlx_terminate(g->mlx);
 }
