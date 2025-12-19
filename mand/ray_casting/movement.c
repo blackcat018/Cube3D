@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 22:07:42 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/18 15:56:05 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/19 10:23:03 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void apply_sprint(t_game *g, double *move_speed)
 {
     if (mlx_is_key_down(g->mlx, MLX_KEY_LEFT_SHIFT) || 
         mlx_is_key_down(g->mlx, MLX_KEY_RIGHT_SHIFT))
-        *move_speed = g->player.move_speed * 2.0;
+        *move_speed = g->player.move_speed * 3.0;
     else
         *move_speed = g->player.move_speed;
 }

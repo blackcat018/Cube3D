@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 08:54:59 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/18 12:22:18 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/19 10:29:27 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	draw_minimap_pixel(t_game *g, t_minimap *m)
 		if (get_map_value(g, (int)m->map_x, (int)m->map_y) == 1)
 			m->color = 0x1a1a1aAA;
 		else
-			m->color = 0x404040AA;
+			m->color = 0xFFfadac4;
 		m->screen_x = m->offset_x + m->x;
 		m->screen_y = m->offset_y + m->y;
 		if (m->screen_x < g->screen_width && m->screen_y < g->screen_height)
@@ -114,7 +114,7 @@ void	draw_minimap(t_game *g)
 	}
 	m.center_x = m.offset_x + m.radius;
 	m.center_y = m.offset_y + m.radius;
-	draw_filled_circle(g, m.center_x, m.center_y, m.size/28 , 0x00aaffFF);
+	draw_filled_circle(g, m.center_x, m.center_y, m.size/28 , 0x00cf8f50);
 	draw_line(g, m.center_x, m.center_y, m.center_x + (int)(g->player.dir_x
 			* 15), m.center_y + (int)(g->player.dir_y * 15), 0xffaa00FF);
 }
