@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: czghoumi <czghoumi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 15:57:02 by czghoumi          #+#    #+#             */
-/*   Updated: 2024/11/15 14:54:48 by czghoumi         ###   ########.fr       */
+/*   Created: 2024/10/29 17:26:35 by moel-idr          #+#    #+#             */
+/*   Updated: 2024/11/03 11:30:48 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*head;
+	t_list	*list;
 
-	head = malloc(sizeof(t_list));
-	if (head == NULL)
+	list = (t_list *)malloc(sizeof(t_list));
+	if (!list)
 		return (NULL);
-	head->content = content;
-	head->next = NULL;
-	return (head);
+	list->next = NULL;
+	list->content = content;
+	return (list);
 }

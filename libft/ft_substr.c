@@ -3,45 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: czghoumi <czghoumi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 17:27:21 by czghoumi          #+#    #+#             */
-/*   Updated: 2024/11/16 21:53:20 by czghoumi         ###   ########.fr       */
+/*   Created: 2024/10/24 14:33:38 by moel-idr          #+#    #+#             */
+/*   Updated: 2024/11/02 15:10:31 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	count(char const *s, size_t len)
+char	*ft_substr(char const *str, unsigned int start, size_t len)
 {
-	size_t	i;
+	char			*sub;
+	unsigned int	i;
+	unsigned int	b;
 
-	i = 0;
-	while (s[i] && i < len)
-		i++;
-	return (i);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*ptr;
-	size_t	b;
-	size_t	i;
-
-	if (!s)
+	if (!str)
 		return (NULL);
-	if ((size_t)start >= ft_strlen (s))
+	if (start > (unsigned int)ft_strlen(str))
 		return (ft_strdup(""));
-	b = count(&s[start], len);
-	ptr = malloc(b + 1);
-	if (ptr == NULL)
-		return (NULL);
+	if (len > (unsigned int)ft_strlen(str) - start)
+		len = ft_strlen(str) - start;
 	i = 0;
-	while (i < b)
+	b = start;
+	sub = malloc((len + 1) * sizeof(char));
+	if (!sub)
+		return (NULL);
+	while (str[b] && i < len)
 	{
-		ptr[i] = s[start + i];
+		sub[i] = str[b];
+		b++;
 		i++;
 	}
-	ptr[i] = '\0';
-	return (ptr);
+	sub[i] = '\0';
+	return (sub);
 }

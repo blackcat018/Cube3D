@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: czghoumi <czghoumi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 23:05:04 by czghoumi          #+#    #+#             */
-/*   Updated: 2024/11/15 14:54:11 by czghoumi         ###   ########.fr       */
+/*   Created: 2024/10/22 19:05:23 by moel-idr          #+#    #+#             */
+/*   Updated: 2024/10/30 12:18:40 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+int	ft_isdigit(int n)
 {
-	if ((c >= '0' && c <= '9'))
+	if (n <= '9' && n >= '0')
 		return (1);
 	return (0);
 }

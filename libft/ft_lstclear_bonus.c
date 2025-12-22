@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: czghoumi <czghoumi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 23:44:56 by czghoumi          #+#    #+#             */
-/*   Updated: 2024/11/10 01:19:49 by czghoumi         ###   ########.fr       */
+/*   Created: 2024/10/29 19:54:57 by moel-idr          #+#    #+#             */
+/*   Updated: 2024/11/05 15:56:42 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list	*s;
+	t_list	*p;
 
-	if (lst == NULL || del == NULL)
+	if (!lst || !del)
 		return ;
-	while (*lst != NULL)
+	while (*lst)
 	{
-		s = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = s;
+		p = *lst;
+		del((*lst)->content);
+		*lst = (*lst)->next;
+		free(p);
 	}
-	*lst = NULL;
 }

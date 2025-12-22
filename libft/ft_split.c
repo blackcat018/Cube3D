@@ -3,95 +3,104 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: czghoumi <czghoumi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 01:19:41 by czghoumi          #+#    #+#             */
-/*   Updated: 2024/11/16 21:50:35 by czghoumi         ###   ########.fr       */
+/*   Created: 2024/10/25 19:19:55 by moel-idr          #+#    #+#             */
+/*   Updated: 2024/11/03 20:41:43 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count(char const *s, char c)
+static int	word_count(char *str, char c)
 {
 	int	i;
-	int	j;
+	int	word;
 
+	word = 0;
 	i = 0;
-	j = 0;
-	while (s[i])
+	while (str[i])
 	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != '\0')
-			j++;
-		while (s[i] != c && s[i] != '\0')
-			i++;
-	}
-	return (j);
-}
-
-static char	*ft_strdp(const char *s1, int i, char c)
-{
-	char	*ptr;
-	int		len;
-	int		j;
-
-	len = 0;
-	j = 0;
-	while (s1[i + len] != '\0' && s1[i + len] != c)
-		len++;
-	ptr = malloc(len + 1);
-	if (ptr == NULL)
-		return (NULL);
-	while (j < len)
-	{
-		ptr[j] = s1[i + j];
-		j++;
-	}
-	ptr[j] = '\0';
-	return (ptr);
-}
-
-static char	**rempli(char **ptr, char const *s, char c)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != '\0') 
+		if (str[i] != c)
 		{
-			ptr[j] = ft_strdp(s, i, c);
-			if (ptr[j] == NULL) 
-			{
-				while (j > 0) 
-					free(ptr[--j]);
-				return (free(ptr), (NULL));
-			}
-			j++;
+			word++;
+			while (str[i] != c && str[i])
+				i++;
+			if (str[i] == '\0')
+				return (word);
 		}
-		while (s[i] != c && s[i] != '\0')
-			i++;
+		i++;
 	}
-	ptr[j] = NULL;
-	return (ptr);
+	return (word);
+}
+
+static void	free_all(char **str, int j)
+{
+	int	i;
+
+	i = 0;
+	while (i < j)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
+static char	*ft_alloc(char *s, char c, int *pos)
+{
+	int		start;
+	int		word_len;
+	int		i;
+	char	*word;
+
+	word_len = 0;
+	i = 0;
+	while (s[*pos] && s[*pos] == c)
+		(*pos)++;
+	start = *pos;
+	while (s[*pos] && s[*pos] != c)
+	{
+		(*pos)++;
+		word_len++;
+	}
+	word = malloc(sizeof(char) * (word_len + 1));
+	if (!word)
+		return (NULL);
+	while (i < word_len)
+	{
+		word[i] = s[start + i];
+		i++;
+	}
+	word[word_len] = '\0';
+	return (word);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**ptr;
-	int		count;
+	int		i;
+	int		wds;
+	int		pos;
+	char	**result;
 
 	if (s == NULL)
 		return (NULL);
-	count = ft_count(s, c);
-	ptr = malloc ((count + 1) * sizeof(char *));
-	if (ptr == NULL)
+	i = 0;
+	pos = 0;
+	wds = word_count((char *)s, c);
+	result = malloc((wds + 1) * sizeof(char *));
+	if (!result)
 		return (NULL);
-	return (rempli(ptr, s, c));
+	while (i < wds)
+	{
+		result[i] = ft_alloc((char *)s, c, &pos);
+		if (!result[i])
+		{
+			free_all(result, i);
+			return (NULL);
+		}
+		i++;
+	}
+	result[i] = NULL;
+	return (result);
 }

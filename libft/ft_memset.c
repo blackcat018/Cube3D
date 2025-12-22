@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: czghoumi <czghoumi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 19:21:53 by czghoumi          #+#    #+#             */
-/*   Updated: 2024/11/18 22:04:49 by czghoumi         ###   ########.fr       */
+/*   Created: 2024/10/22 16:52:28 by moel-idr          #+#    #+#             */
+/*   Updated: 2024/11/09 14:53:30 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *s, int c, size_t length)
 {
-	unsigned char	*a;
 	size_t			i;
+	unsigned char	*r;
 
-	a = (unsigned char *)b;
 	i = 0;
-	while (i < len)
+	r = (unsigned char *)s;
+	while (i < length)
 	{
-		a[i] = (unsigned char)c;
+		r[i] = (unsigned char)c;
 		i++;
 	}
-	return (b);
+	return (s);
 }

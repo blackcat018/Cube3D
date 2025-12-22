@@ -5,66 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 22:06:10 by czghoumi          #+#    #+#             */
-/*   Updated: 2025/12/16 19:56:03 by moel-idr         ###   ########.fr       */
+/*   Created: 2024/10/25 12:47:58 by moel-idr          #+#    #+#             */
+/*   Updated: 2024/11/08 15:02:04 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	cont1(char const *s1, char const *set)
-{
-	size_t	i;
-	char	*k;
-
-	i = 0;
-	while (s1[i])
-	{
-		k = ft_strchr(set, s1[i]);
-		if (k != NULL)
-			i++;
-		else 
-			return (i);
-	}
-	return (i);
-}
-
-static size_t	cont2(char const *s1, char const *set)
-{
-	size_t	i;
-	char	*k;
-	size_t	len;
-
-	i = cont1(s1, set);
-	len = ft_strlen(s1);
-	while (len >= i)
-	{
-		k = ft_strchr(set, s1[len]);
-		if (k != NULL)
-			len--;
-		else 
-			return (len);
-	}
-	return (0);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	j;
-	size_t	k;
-	char	*ptr;
+	int		i;
+	int		j;
+	char	*res;
 
-	if (s1 == NULL || set == NULL)
+	if (!s1)
 		return (NULL);
-	j = cont1(s1, set);
-	k = cont2(s1, set);
-	if (j > k)
-		return (ft_strdup(""));
-	if (s1[0] == '\0' || set[0] == '\0')
+	if (!set)
 		return (ft_strdup(s1));
-	ptr = malloc((k - j) + 2);
-	if (ptr == NULL)
+	i = 0;
+	j = ft_strlen(s1);
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	while (j > i && ft_strchr(set, s1[j - 1]))
+		j--;
+	if (i >= j)
+	{
+		return (ft_strdup(""));
+	}
+	res = malloc((j - i + 1) * sizeof(char));
+	if (!res)
 		return (NULL);
-	ft_strlcpy(ptr, &s1[j], (k - j) + 2);
-	return (ptr);
+	ft_strlcpy(res, &s1[i], j - i + 1);
+	return (res);
 }

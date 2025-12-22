@@ -3,67 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: czghoumi <czghoumi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 01:49:39 by czghoumi          #+#    #+#             */
-/*   Updated: 2024/11/16 21:49:20 by czghoumi         ###   ########.fr       */
+/*   Created: 2024/10/26 12:36:12 by moel-idr          #+#    #+#             */
+/*   Updated: 2024/11/02 15:09:55 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_len(long c)
+static int	len_calc(int n)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	if (c == 0)
+	len = 0;
+	if (n == 0)
 		return (1);
-	if (c < 0)
+	if (n < 0)
+		len++;
+	while (n != 0)
 	{
-		c = -c;
-		i++;
+		n = n / 10;
+		len++;
 	}
-	while (c > 0)
-	{
-		c = c / 10;
-		i++;
-	}
-	return (i);
-}
-
-static char	*shihaja(int c, char *ptr, long nb)
-{
-	if (nb < 0)
-	{
-		nb = -nb;
-		ptr[0] = '-';
-	}
-	if (nb == 0)
-	{
-		ptr[0] = '0';
-		return (ptr);
-	}
-	while (nb > 0)
-	{
-		ptr[c] = nb % 10 + '0';
-		nb = nb / 10;
-		c--;
-	}
-	return (ptr);
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*ptr;
-	long	nb;
-	int		c;
+	char	*result;
+	int		len;
+	long	j;
 
-	nb = n;
-	c = ft_len(nb);
-	ptr = malloc(c + 1);
-	if (ptr == NULL)
+	j = n;
+	len = len_calc(j);
+	result = malloc((len + 1) * sizeof(char));
+	if (!result)
 		return (NULL);
-	ptr[c] = '\0';
-	return (shihaja(c - 1, ptr, nb));
+	if (j < 0)
+	{
+		result[0] = '-';
+		j = -j;
+	}
+	if (j == 0)
+		result[0] = '0';
+	result[len] = '\0';
+	while (j > 0)
+	{
+		result[len - 1] = (j % 10) + '0';
+		j = j / 10;
+		len--;
+	}
+	return (result);
 }

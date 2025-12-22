@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: czghoumi <czghoumi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 02:41:40 by czghoumi          #+#    #+#             */
-/*   Updated: 2024/11/15 14:54:15 by czghoumi         ###   ########.fr       */
+/*   Created: 2024/10/23 12:48:45 by moel-idr          #+#    #+#             */
+/*   Updated: 2024/10/30 12:18:58 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isprint(int c)
 {
-	if (!(c >= 32 && c <= 126))
-		return (0);
-	return (1);
+	if (c >= 32 && c < 127)
+		return (1);
+	return (0);
 }

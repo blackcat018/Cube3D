@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: czghoumi <czghoumi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 23:14:41 by czghoumi          #+#    #+#             */
-/*   Updated: 2024/11/15 14:56:46 by czghoumi         ###   ########.fr       */
+/*   Created: 2024/10/23 18:48:12 by moel-idr          #+#    #+#             */
+/*   Updated: 2024/11/05 14:34:13 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int	ft_tolower(int c)
 {
-	if (c >= 'A' && c <= 'Z')
+	if (c <= 'Z' && c >= 'A')
 	{
 		c = c + 32;
-		return (c);
 	}
-	else
-		return (c);
+	return (c);
 }

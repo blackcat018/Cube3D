@@ -1,38 +1,53 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
-NAME = Cube3d
-NAME_B = Cube3d_bonus
+NAME = cub3D
+NAME_B = cub3D_bonus
 
-SRC_DIR = ray_casting
-MLX_DIR = MLX42
-SRC = mand/main.c mand/texturing/tst.c\
-	  mand/texturing/apply_textures.c\
-	  mand/get_next_line.c mand/texturing/fill_map.c\
-	  mand/texturing/wall_textur.c\
-	  mand/hand_torch/hand.c\
-	  mand/ray_casting/movement.c\
-	  mand/ray_casting/mapping.c\
-	  mand/ray_casting/casting.c\
-	  mand/ray_casting/player.c\
-	  mand/ray_casting/plane.c\
-	  mand/ray_casting/directions.c\
-	  mand/minimap/minimap.c
+SRC = mand/main.c mand/get_next_line.c mand/texturing/wall_help.c mand/texturing/wall_textur.c\
+	  mand/parsing/check.c mand/parsing/fill_map.c mand/parsing/helpers.c\
+	  mand/parsing/misc.c mand/parsing/parsing.c mand/parsing/tst.c mand/lib_ft.c\
+	  mand/ray_casting/apply_textures.c mand/ray_casting/casting.c\
+	  mand/ray_casting/drawing.c mand/ray_casting/init.c mand/ray_casting/mapping.c\
+	  mand/ray_casting/movement.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 HEADER = mand/cube.h
-HEADER_B = bonus/cube_bonus.h
+HEADER_B = bonus/cub3D_bonus.h
 
-SRCS_B = bonus/parcing_bonus.c bonus/door_textur_bonus.c bonus/wall_textur_bonus.c bonus/casing_bonus.c
+SRCS_B = bonus/main_bonus.c bonus/lib_bonus.c\
+	  bonus/parsing_bonus/check_parse_bonus.c\
+	  bonus/parsing_bonus/misc_bonus.c\
+	  bonus/parsing_bonus/norm_sucks_bonus.c\
+	  bonus/parsing_bonus/parsing_bonus.c\
+	  bonus/parsing_bonus/parsing_helper_bonus.c\
+	  bonus/texturing_bonus/apply_textures_bonus.c\
+	  bonus/get_next_line_bonus.c bonus/texturing_bonus/fill_map_bonus.c\
+	  bonus/texturing_bonus/wall_textur_bonus.c\
+	  bonus/texturing_bonus/map_prep_bonus.c\
+	  bonus/texturing_bonus/light_n_color_bonus.c\
+	  bonus/texturing_bonus/set_load_fill_bonus.c\
+	  bonus/texturing_bonus/cleanup_texture_bonus.c\
+	  bonus/hand_torch_bonus/hand_bonus.c\
+	  bonus/hand_torch_bonus/hand_support_bonus.c\
+	  bonus/ray_casting_bonus/movement_bonus.c\
+	  bonus/ray_casting_bonus/mapping_bonus.c\
+	  bonus/ray_casting_bonus/casting_bonus.c\
+	  bonus/ray_casting_bonus/player_bonus.c\
+	  bonus/ray_casting_bonus/plane_bonus.c\
+	  bonus/ray_casting_bonus/directions_bonus.c\
+	  bonus/ray_casting_bonus/init_bonus.c\
+	  bonus/ray_casting_bonus/movement_alt_bonus.c\
+	  bonus/minimap_bonus/minimap_bonus.c\
+	  bonus/minimap_bonus/mini_map_sup_bonus.c
 OBJS_B = $(SRCS_B:.c=.o)
 
 MLX = MLX42/build/libmlx42.a
 GLFW = -L$(shell brew --prefix glfw)/lib -lglfw
 MLXFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 INCLUDES = -I include
-
 
 all: $(LIBFT) $(NAME)
 

@@ -5,125 +5,84 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/16 22:07:42 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/19 19:34:52 by moel-idr         ###   ########.fr       */
+/*   Created: 2025/12/21 11:03:33 by moel-idr          #+#    #+#             */
+/*   Updated: 2025/12/21 11:11:04 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-void apply_sprint(t_game *g, double *move_speed)
+void	rotate_player(t_player *p, double angle)
 {
-    if (mlx_is_key_down(g->mlx, MLX_KEY_LEFT_SHIFT) || 
-        mlx_is_key_down(g->mlx, MLX_KEY_RIGHT_SHIFT))
-        *move_speed = g->player.move_speed * 3.0;
-    else
-        *move_speed = g->player.move_speed;
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = p->dir_x;
+	p->dir_x = p->dir_x * cos(angle) - p->dir_y * sin(angle);
+	p->dir_y = old_dir_x * sin(angle) + p->dir_y * cos(angle);
+	old_plane_x = p->plane_x;
+	p->plane_x = p->plane_x * cos(angle) - p->plane_y * sin(angle);
+	p->plane_y = old_plane_x * sin(angle) + p->plane_y * cos(angle);
 }
 
-void move_forward(t_game *g, double move_speed)
+bool	can_move_to(t_game *g, double x, double y, double r)
 {
-    double new_x;
-    double new_y;
-    double off_x;
-    double off_y;
+	double	dx;
+	double	dy;
+	int		mx;
+	int		my;
 
-    new_x = g->player.x + g->player.dir_x * move_speed;
-    new_y = g->player.y + g->player.dir_y * move_speed;
-    off_x = g->player.dir_x * g->player.radius;
-    off_y = g->player.dir_y * g->player.radius;
-    if (get_map_value(g, (int)(new_x + off_x), (int)(g->player.y)) == 0)
-        g->player.x = new_x;
-    if (get_map_value(g, (int)(g->player.x), (int)(new_y + off_y)) == 0)
-        g->player.y = new_y;
+	mx = (int)floor(x - r);
+	while (mx <= (int)floor(x + r))
+	{
+		my = (int)floor(y - r);
+		while (my <= (int)floor(y + r))
+		{
+			if (get_map_value(g, mx, my) != 0)
+			{
+				dx = x - (fmax((double)mx, fmin(x, (double)mx + 1.0)));
+				dy = y - (fmax((double)my, fmin(y, (double)my + 1.0)));
+				if (dx * dx + dy * dy < r * r)
+					return (false);
+			}
+			my++;
+		}
+		mx++;
+	}
+	return (true);
 }
 
-void move_backward(t_game *g, double move_speed)
+void	handel_mouves_keys(t_game *g, double x, double y, double radius)
 {
-    double new_x;
-    double new_y;
-    double off_x;
-    double off_y;
+	double	new_x;
+	double	new_y;
 
-    new_x = g->player.x - g->player.dir_x * move_speed;
-    new_y = g->player.y - g->player.dir_y * move_speed;
-	off_x = -g->player.dir_x * g->player.radius;
-	off_y = -g->player.dir_y * g->player.radius;
-    if (get_map_value(g, (int)(new_x + off_x), (int)g->player.y) == 0)
-        g->player.x = new_x;
-    if (get_map_value(g, (int)g->player.x, (int)(new_y + off_y)) == 0)
-        g->player.y = new_y;
+	new_x = g->player.x + x * g->player.move_speed;
+	new_y = g->player.y + y * g->player.move_speed;
+	if (can_move_to(g, new_x, new_y, radius))
+	{
+		g->player.x = new_x;
+		g->player.y = new_y;
+	}
 }
 
-void move_left(t_game *g, double move_speed)
+void	handle_movement(t_game *g)
 {
-    double new_x;
-    double new_y;
-    double off_x;
-    double off_y;
+	double	radius;
 
-    new_x = g->player.x - g->player.plane_x * move_speed;
-    new_y = g->player.y - g->player.plane_y * move_speed;
-
-    off_x = -g->player.plane_x * g->player.radius;
-    off_y = -g->player.plane_y * g->player.radius;
-
-    if (get_map_value(g, (int)(new_x + off_x), (int)(g->player.y)) == 0)
-        g->player.x = new_x;
-    if (get_map_value(g, (int)(g->player.x), (int)(new_y + off_y)) == 0)
-        g->player.y = new_y;
-}
-
-void move_right(t_game *g, double move_speed)
-{
-    double new_x;
-    double new_y;
-    double off_x;
-    double off_y;
-
-    new_x = g->player.x + g->player.plane_x * move_speed;
-    new_y = g->player.y + g->player.plane_y * move_speed;
-
-    off_x = g->player.plane_x * g->player.radius;
-    off_y = g->player.plane_y * g->player.radius;
-
-    if (get_map_value(g, (int)(new_x + off_x), (int)(g->player.y)) == 0)
-        g->player.x = new_x;
-    if (get_map_value(g, (int)(g->player.x), (int)(new_y + off_y)) == 0)
-        g->player.y = new_y;
-}
-
-void handle_rotation(t_game *g)
-{
-    if (mlx_is_key_down(g->mlx, MLX_KEY_LEFT))
-        rotate_player(&g->player, -g->player.rot_speed);
-    
-    if (mlx_is_key_down(g->mlx, MLX_KEY_RIGHT))
-        rotate_player(&g->player, g->player.rot_speed);
-}
-
-void handle_wasd(t_game *g, double move_speed)
-{
-    if (mlx_is_key_down(g->mlx, MLX_KEY_W))
-        move_forward(g, move_speed);
-    
-    if (mlx_is_key_down(g->mlx, MLX_KEY_S))
-        move_backward(g, move_speed);
-    
-    if (mlx_is_key_down(g->mlx, MLX_KEY_A))
-        move_left(g, move_speed);
-    
-    if (mlx_is_key_down(g->mlx, MLX_KEY_D))
-        move_right(g, move_speed);
-}
-
-void handle_movement(t_game *g)
-{
-    double move_speed;
-    
-	if(!mlx_is_key_down(g->mlx,MLX_KEY_LEFT_CONTROL))
-    	handle_mouse_rotation(g);
-    apply_sprint(g, &move_speed);
-    handle_wasd(g, move_speed);
-    handle_rotation(g);
+	radius = 0.2;
+	if (mlx_is_key_down(g->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(g->mlx);
+	if (mlx_is_key_down(g->mlx, MLX_KEY_W))
+		handel_mouves_keys(g, g->player.dir_x, g->player.dir_y, radius);
+	if (mlx_is_key_down(g->mlx, MLX_KEY_S))
+		handel_mouves_keys(g, -g->player.dir_x, -g->player.dir_y, radius);
+	if (mlx_is_key_down(g->mlx, MLX_KEY_A))
+		handel_mouves_keys(g, -g->player.plane_x, -g->player.plane_y, radius);
+	if (mlx_is_key_down(g->mlx, MLX_KEY_D))
+		handel_mouves_keys(g, g->player.plane_x, g->player.plane_y, radius);
+	if (mlx_is_key_down(g->mlx, MLX_KEY_LEFT))
+		rotate_player(&g->player, -g->player.rot_speed);
+	if (mlx_is_key_down(g->mlx, MLX_KEY_RIGHT))
+		rotate_player(&g->player, g->player.rot_speed);
 }
