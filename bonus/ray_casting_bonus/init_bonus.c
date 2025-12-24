@@ -6,11 +6,16 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 10:08:11 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/23 11:06:16 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/24 09:37:16 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D_bonus.h"
+
+uint32_t	get_rgba(int r, int g, int b)
+{
+	return ((uint32_t)r << 24 | (uint32_t)g << 16 | (uint32_t)b << 8 | 255);
+}
 
 double	clamp_light(double light)
 {

@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 22:15:12 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/23 14:29:17 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/24 09:42:39 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,16 @@ void	draw_ceiling(t_game *g)
 	double		dist;
 	double		light;
 	uint32_t	color;
+	uint32_t	colr_2;
 
 	y = 0;
+	colr_2 = get_rgba(g->my_map->ceil->r, g->my_map->ceil->g,
+			g->my_map->ceil->b);
 	while (y < g->screen_height / 2)
 	{
-		dist = (1.5 * g->screen_height)
-			/ (g->screen_height / 2.0 - y + 0.001);
+		dist = (1.5 * g->screen_height) / (g->screen_height / 2.0 - y + 0.001);
 		light = clamp_light(1.0 - (dist / 10.0));
-		color = apply_lighting(0xFFfeee68, light * 0.7);
+		color = apply_lighting(colr_2, light * 0.7);
 		draw_horizontal_line(g, y, color);
 		y++;
 	}
@@ -49,14 +51,16 @@ void	draw_floor(t_game *g)
 	double		dist;
 	double		light;
 	uint32_t	color;
+	uint32_t	colr_2;
 
 	y = g->screen_height / 2;
+	colr_2 = get_rgba(g->my_map->floor->r, g->my_map->floor->g,
+			g->my_map->floor->b);
 	while (y < g->screen_height)
 	{
-		dist = (1.5 * g->screen_height)
-			/ (y - g->screen_height / 2.0 + 0.001);
+		dist = (1.5 * g->screen_height) / (y - g->screen_height / 2.0 + 0.001);
 		light = clamp_light(1.0 - (dist / 10.0));
-		color = apply_lighting(0xFFfadac4, light);
+		color = apply_lighting(colr_2, light);
 		draw_horizontal_line(g, y, color);
 		y++;
 	}

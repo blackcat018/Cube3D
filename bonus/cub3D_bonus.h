@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 08:54:59 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/23 14:33:59 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/24 09:37:36 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -337,5 +337,6 @@ char				*ft_strdupp(const char *s1);
 void				ft_copy(char *dest, const char *src, size_t src_len);
 char				*ft_strjoinn(char *s1, char *s2);
 int					ft_found(const char *str, char c);
+uint32_t			get_rgba(int r, int g, int b);
 
 #endif
