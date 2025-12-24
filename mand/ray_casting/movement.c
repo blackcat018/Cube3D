@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 11:03:33 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/21 11:11:04 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/24 10:29:39 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,10 @@ void	handel_mouves_keys(t_game *g, double x, double y, double radius)
 
 	new_x = g->player.x + x * g->player.move_speed;
 	new_y = g->player.y + y * g->player.move_speed;
-	if (can_move_to(g, new_x, new_y, radius))
-	{
+	if (can_move_to(g, new_x, g->player.y, radius))
 		g->player.x = new_x;
+	if (can_move_to(g, g->player.x, new_y, radius))
 		g->player.y = new_y;
-	}
 }
 
 void	handle_movement(t_game *g)
