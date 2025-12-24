@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 10:04:38 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/22 10:04:51 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/24 12:22:30 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	draw_minimap_pixel(t_game *g, t_minimap *m)
 		if (get_map_value(g, (int)m->map_x, (int)m->map_y) == 1)
 			m->color = 0x1a1a1aAA;
 		else
-			m->color = 0x404040AA;
+			m->color = 0xfff9f999;
 		m->screen_x = m->offset_x + m->x;
 		m->screen_y = m->offset_y + m->y;
 		if (m->screen_x < g->screen_width && m->screen_y < g->screen_height)

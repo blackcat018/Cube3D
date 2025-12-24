@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 11:08:59 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/21 11:36:34 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/24 16:15:29 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ void	init_ray(t_ray *ray, t_game *g, int x)
 t_wall	get_wall(t_ray *ray)
 {
 	t_wall	w;
-
-	w.line_h = (int)(SCREEN_HEIGHT / ray->perp_wall_dist);
+	
 	w.start = -w.line_h / 2 + SCREEN_HEIGHT / 2;
 	if (w.start < 0)
 		w.start = 0;

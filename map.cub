@@ -2,10 +2,9 @@ F 215,215,215
 C 145,141,142
 
 WE ./textures/west.png
-        
-SO ./textures/west.png
-EA ./textures/west.png
-NO ./textures/west.png
+SO ./textures/south.png
+EA ./textures/east.png
+NO ./textures/north.png
 
 111111111111111111111111111111
 1D0W00010000001000000100000001

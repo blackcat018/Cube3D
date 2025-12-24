@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 08:54:59 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/22 10:04:12 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/24 12:25:28 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	draw_minimap_player(t_game *g, t_minimap *m)
 	m->center_y = m->offset_y + m->radius;
 	m->x1 = m->center_x + (int)(g->player.dir_x * 15);
 	m->y1 = m->center_y + (int)(g->player.dir_y * 15);
-	draw_filled_circle(g, m, m->size / 28, 0x00aaffFF);
+	draw_filled_circle(g, m, m->size / 28, 0x0f0F6B40);
 	draw_line(g, m, 0xffaa00FF);
 }
 

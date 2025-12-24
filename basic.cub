@@ -1,7 +1,7 @@
 NO ./textures/1.png
-SO ./textures/1.png
-WE ./textures/1.png
-EA ./textures/1.png
+SO ./textures/2.png
+WE ./textures/3.png
+EA ./textures/4.png
 F 107,78,50
 C 40,188,246
 

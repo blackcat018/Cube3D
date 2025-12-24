@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 22:15:12 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/24 09:42:39 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/24 12:39:22 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ t_wall	get_wall(t_game *g, t_ray *ray)
 {
 	t_wall	w;
 
-	w.line_h = (int)(g->screen_height / ray->perp_wall_dist);
 	w.start = -w.line_h / 2 + g->screen_height / 2;
 	if (w.start < 0)
 		w.start = 0;
