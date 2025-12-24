@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:23:07 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/21 11:36:55 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/23 11:24:35 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	loop_hook(void *param)
 
 	g = param;
 	handle_movement(g);
-	memset(g->img->pixels, 0, SCREEN_WIDTH * SCREEN_HEIGHT * 4);
+	ft_memset(g->img->pixels, 0, SCREEN_WIDTH * SCREEN_HEIGHT * 4);
 	cast_rays(g);
 }
 

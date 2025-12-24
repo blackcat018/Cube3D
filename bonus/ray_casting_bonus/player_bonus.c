@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: czghoumi <czghoumi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 12:15:18 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/20 08:54:08 by czghoumi         ###   ########.fr       */
+/*   Updated: 2025/12/22 15:53:17 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_player_spawn(char c)
 void	set_player_direction(t_player *player, char direction)
 {
 	const double	directions[4][4] = {
-	{0.0, -1.0, 0.66, 0.0},
+	{0.0, -1.0, 0.6, 0.0},
 	{0.0, 1.0, -0.66, 0.0},
 	{1.0, 0.0, 0.0, 0.66},
 	{-1.0, 0.0, 0.0, -0.66} 

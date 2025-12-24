@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 12:15:18 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/22 10:15:08 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/23 14:34:14 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,14 @@ void	get_map_dimensions(t_game *g)
 int	get_map_value(t_game *g, int x, int y)
 {
 	if (y < 0 || y >= g->map_height || x < 0)
-		return (1); 
+		return (1);
 	if (x >= (int)ft_strlen(g->my_map->map[y]))
 		return (1);
 	if (g->my_map->map[y][x] == '1')
 		return (1);
-	if (g->my_map->map[y][x] == 'd' || g->my_map->map[y][x] == '0' || 
-		g->my_map->map[y][x] == 'N' || 
-		g->my_map->map[y][x] == 'S' || g->my_map->map[y][x] == 'E' || 
-		g->my_map->map[y][x] == 'W')
+	if (g->my_map->map[y][x] == 'd' || g->my_map->map[y][x] == '0'
+		|| g->my_map->map[y][x] == 'N' || g->my_map->map[y][x] == 'S'
+		|| g->my_map->map[y][x] == 'E' || g->my_map->map[y][x] == 'W')
 		return (0);
 	return (1);
 }
@@ -75,6 +74,7 @@ void	draw_textured_door(t_game *g, int x, t_ray *ray)
 	double			wall_x;
 	mlx_texture_t	*tex;
 	t_scalc			calc;
+	uint32_t		color;
 
 	if (!g)
 		return ;
@@ -82,15 +82,14 @@ void	draw_textured_door(t_game *g, int x, t_ray *ray)
 	wall_x = wal_xx(ray, g);
 	tex = g->texture_door;
 	if (ray->perp_wall_dist <= 0.0 || !tex)
-	{
-		draw_wall(g, x, ray);
-		return ;
-	}
+		return (draw_wall(g, x, ray));
 	calc = calculatin(wall_x, tex, value, g);
+	g->light = get_light_intensity(ray->perp_wall_dist);
 	while (value.draw_start <= value.draw_end)
 	{
-		mlx_put_pixel(g->img, x, value.draw_start, 
-			color_pixwls_img(&calc, ray));
+		color = color_pixwls_img(&calc, ray);
+		color = apply_lighting(color, g->light);
+		mlx_put_pixel(g->img, x, value.draw_start, color);
 		value.draw_start++;
 	}
 }

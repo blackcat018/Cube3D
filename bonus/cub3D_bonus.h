@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 08:54:59 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/22 12:04:26 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/23 14:33:59 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,7 @@ typedef struct s_game
 	mlx_texture_t	*texture_open2;
 	mlx_image_t		*img_open1;
 	mlx_image_t		*img_open2;
+	double			light;
 }					t_game;
 
 typedef struct s_vline
