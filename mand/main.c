@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:23:07 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/23 11:24:35 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/25 15:44:28 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	lll(void)
 
 int	main(int argc, char **argv)
 {
+	atexit(lll);
 	t_game	g;
 
 	g.my_map = map_fill(argc, argv);
@@ -44,7 +45,6 @@ int	main(int argc, char **argv)
 	}
 	g.img = mlx_new_image(g.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	mlx_image_to_window(g.mlx, g.img, 0, 0);
-	atexit(lll);
 	mlx_loop_hook(g.mlx, loop_hook, &g);
 	mlx_loop(g.mlx);
 	free_mymap(g.my_map);

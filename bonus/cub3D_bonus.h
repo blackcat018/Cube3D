@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 08:54:59 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/25 14:07:08 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/25 15:48:03 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,5 +339,5 @@ char				*ft_strjoinn(char *s1, char *s2);
 int					ft_found(const char *str, char c);
 uint32_t			get_rgba(int r, int g, int b);
 bool				check_border(char **map, int i, int j);
-
+int					check_wit_space(char *arg);
 #endif

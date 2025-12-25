@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 23:09:01 by czghoumi          #+#    #+#             */
-/*   Updated: 2025/12/21 11:36:21 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/25 15:48:18 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,20 @@ int	cub_atoi(const char *str)
 	return (result);
 }
 
-int	check_rgb(char **rgb)
+int    check_rgb(char **rgb)
 {
-	int	i;
+    int    i;
 
-	i = 0;
-	while (i < 3)
-	{
-		if (cub_atoi(rgb[i]) == -1)
-			return (0);
-		i++;
-	}
-	return (1);
+    i = 0;
+    while (i < 3)
+    {
+        if(check_wit_space(rgb[i]))
+            return (0);
+        if (cub_atoi(rgb[i]) == -1)
+            return (0);
+        i++;
+    }
+    return (1);
 }
 
 int	check_comma(char *word)

@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:23:07 by czghoumi          #+#    #+#             */
-/*   Updated: 2025/12/21 11:38:55 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/25 15:48:38 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,18 @@ int	dispatch_line(char *line, char *word, t_pars *m)
 		return (free_mymap(m), 0);
 	}
 	return (-1);
+}
+
+int	check_wit_space(char *arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i] != '\0')
+	{
+		if (arg[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
 }

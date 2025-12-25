@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 10:55:09 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/22 11:04:23 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/25 15:42:57 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	for_color(char *line, char *word, t_rgb **coll, t_pars *my_map)
 	char	*last;
 
 	last = remove_prefix_dup(line, word);
+	free(word);
 	if (*coll == NULL)
 	{
 		*coll = colors_parce(last);
@@ -74,7 +75,6 @@ int	for_color(char *line, char *word, t_rgb **coll, t_pars *my_map)
 		free(last);
 		return (free_mymap(my_map), 0);
 	}
-	free(word);
 	return (1);
 }
 

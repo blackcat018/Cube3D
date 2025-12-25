@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:23:07 by czghoumi          #+#    #+#             */
-/*   Updated: 2025/12/21 11:43:17 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/25 15:48:53 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,4 +239,5 @@ char				*ft_strdupp(const char *s1);
 void				ft_copy(char *dest, const char *src, size_t src_len);
 char				*ft_strjoinn(char *s1, char *s2);
 int					ft_found(const char *str, char c);
+int					check_wit_space(char *arg);
 #endif
