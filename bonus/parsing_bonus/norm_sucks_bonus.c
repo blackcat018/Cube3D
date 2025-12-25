@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 10:49:25 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/22 10:50:03 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/25 14:09:07 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,17 @@ void	fix_shit(t_pars *my_map, int k)
 			my_map->map[i] = line;
 		}
 	}
+}
+
+bool	check_border(char **map, int i, int j)
+{
+	if (j >= (int)ft_strlen(map[i - 1]) || (map[i - 1][j] != '1'
+		&& map[i][j - 1] != '1'))
+		return (false);
+	if (j >= (int)ft_strlen(map[i + 1]) || (map[i + 1][j] != '1'
+		&& map[i][j + 1] != '1'))
+		return (false);
+	if (map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
+		return (false);
+	return (true);
 }

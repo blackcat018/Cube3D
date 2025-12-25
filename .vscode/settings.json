@@ -77,9 +77,9 @@
     {
         "text": "1",
         "color": "#bf7824",
-        "backgroundColor": "##b0bf24",
+        "backgroundColor": "##b0bf1321324",
         "overviewRulerColor": "red"
-    }
+    }	
 ],
 "cmake.sourceDirectory": "/Users/moel-idr/Desktop/Cube3D/MLX42",
 "cmake.ignoreCMakeListsMissing": true

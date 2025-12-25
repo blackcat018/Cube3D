@@ -6,7 +6,7 @@
 /*   By: moel-idr <moel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 10:43:12 by moel-idr          #+#    #+#             */
-/*   Updated: 2025/12/22 10:44:14 by moel-idr         ###   ########.fr       */
+/*   Updated: 2025/12/25 14:06:38 by moel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,11 @@ bool	check_zero_pos(char **map)
 		while (map[i][j + 1])
 		{
 			if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S'
-				|| map[i][j] == 'E' || map[i][j] == 'W')
+				|| map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'D')
 				if (!check_cell(map, i, j))
 					return (false);
+			if (map[i][j] == 'D' && !check_border(map, i, j))
+				return (false);
 			j++;
 		}
 		i++;
